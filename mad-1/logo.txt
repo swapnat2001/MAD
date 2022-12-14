@@ -1,0 +1,122 @@
+activity main.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_margin="50dp"
+        android:layout_gravity="center"
+        android:id="@+id/logo"/>
+
+    <Button
+        android:id="@+id/button1"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="20dp"
+        android:text="Change color to red"/>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Change color to cyan"/>
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"
+        android:text="Change color to black"/>
+
+</LinearLayout>
+
+
+main.java
+package com.example.gmodels;
+
+
+import android.app.Activity;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.ImageView;
+
+public class MainActivity extends Activity
+{
+    @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        //Creating a Bitmap
+        Bitmap bg = Bitmap.createBitmap(300, 300, Bitmap.Config.ARGB_8888);
+
+        //Setting the Bitmap as background for the ImageView
+        ImageView i = (ImageView) findViewById(R.id.logo);
+        i.setBackgroundDrawable(new BitmapDrawable(bg));
+
+        //Creating the Canvas Object
+        Canvas canvas = new Canvas(bg);
+
+        //Creating the Paint Object and set its color & TextSize
+        Paint paint = new Paint();
+        paint.setColor(Color.RED);
+
+        //To draw a Rectangle
+        canvas.drawRect(50, 50, 250, 150, paint);
+
+        //To draw a Square
+        canvas.drawRect(100, 170, 200, 270, paint);
+
+        Button b1= (Button) findViewById(R.id.button1);
+        b1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                paint.setColor(Color.RED);
+                canvas.drawRect(50, 50, 250, 150, paint);
+
+                //To draw a Square
+                canvas.drawRect(100, 170, 200, 270, paint);
+            }
+        });
+
+        Button b2= (Button) findViewById(R.id.button2);
+        b2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                paint.setColor(Color.CYAN);
+                canvas.drawRect(50, 50, 250, 150, paint);
+
+                //To draw a Square
+                canvas.drawRect(100, 170, 200, 270, paint);
+            }
+        });
+
+        Button b3= (Button) findViewById(R.id.button3);
+        b3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                paint.setColor(Color.BLACK);
+                canvas.drawRect(50, 50, 250, 150, paint);
+
+                //To draw a Square
+                canvas.drawRect(100, 170, 200, 270, paint);
+            }
+        });
+
+    }
+}
